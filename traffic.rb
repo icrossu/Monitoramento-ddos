@@ -1,7 +1,7 @@
 require 'packetfu'
 
 def monitoramento_servidor
-  captura = PacketFu::Capture.new(:iface => 'enp3s0', :promisc => true)
+  captura = PacketFu::Capture.new(:iface => 'enp3s0', :promisc => true) # mudar de acordo com o protocolo de rede do servidor 'ifconfig'
   captura.start
 
   contagem_pacotes_ip = Hash.new(0)
@@ -40,7 +40,7 @@ def monitoramento_servidor
             end
           end
 
-          if contagem_pacotes_ip[ip_origem] > 10  
+          if contagem_pacotes_ip[ip_origem] > 100 # mudar de acordo com a nescessidade  
             puts "Ataque DDoS potencial detectado do IP: #{ip_origem}!"
           end
         end
